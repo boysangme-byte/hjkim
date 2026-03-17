@@ -687,6 +687,70 @@
             nav ul { justify-content: flex-start; flex-wrap: nowrap; }
             .archive-summary { font-size: 18px; padding: 20px; }
         }
+
+        /* ==================================================
+           🖨️ PDF 인쇄용 최적화 설정 (@media print)
+           ================================================== */
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            @page {
+                size: A4 portrait;
+                margin: 15mm 10mm;
+            }
+            body {
+                background-color: var(--dark-bg) !important;
+                color: var(--light-gray) !important;
+                overflow: visible !important;
+            }
+            #progress-container, nav, .toggle-icon, #lightbox {
+                display: none !important;
+            }
+            header {
+                position: static !important;
+                background: transparent !important;
+                border: none !important;
+            }
+            section {
+                padding: 30px 0 !important;
+                page-break-inside: auto;
+            }
+            .snap-row, .feature-box, .history-item, .gallery-item {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                margin-bottom: 20px !important;
+            }
+            .slider-container {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                overflow: visible !important;
+                gap: 15px !important;
+            }
+            .slider-item {
+                flex: 1 1 calc(50% - 15px) !important;
+                min-width: 45% !important;
+                height: auto !important;
+                page-break-inside: avoid !important;
+            }
+            .slider-item img {
+                height: 200px !important;
+                object-fit: contain !important;
+            }
+            .archive-details {
+                display: block !important;
+                border: none !important;
+            }
+            .archive-details .archive-content {
+                display: block !important;
+                opacity: 1 !important;
+            }
+            .archive-summary {
+                border-bottom: 2px solid var(--accent-blue) !important;
+                padding-left: 0 !important;
+            }
+        }
     </style>
 </head>
 
@@ -705,7 +769,8 @@
                     <li><a href="#traxk">Traxk (SaaS)</a></li>
                     <li><a href="#trend">Trend Agent</a></li>
                     <li><a href="#coture">Coturé CRM</a></li>
-                    <li><a href="#spotify">Spotify</a></li>
+                    <li><a href="#spotify">Spotify Analysis</a></li>
+                    <li><a href="#coture-bi">Coturé BI</a></li>
                     <li><a href="#archive">~2023 Archive</a></li>
                 </ul>
             </nav>
@@ -768,6 +833,7 @@
                 </div>
                 <div class="snap-image" onclick="openModal(this)">
                     <img src="snap-crm-pipeline.png" alt="풀퍼널 CRM 마케팅 프로세스 및 파이프라인 설계">
+                    <div class="gallery-caption" style="display:none;">CRM 자동화 시나리오 및 트리거 로직 설계도</div>
                 </div>
             </div>
 
@@ -781,6 +847,7 @@
                 </div>
                 <div class="snap-image" onclick="openModal(this)">
                     <img src="snap-ab-test-roas.png" alt="A/B 테스트 및 캠페인 리뉴얼 성과(ROAS) 비교">
+                    <div class="gallery-caption" style="display:none;">데일리 캠페인 A/B 테스트 기반 퍼포먼스 최적화 성과 지표</div>
                 </div>
             </div>
 
@@ -794,6 +861,7 @@
                 </div>
                 <div class="snap-image" onclick="openModal(this)">
                     <img src="snap-b2b-consulting.png" alt="초개인화 컨설팅 채널별 데이터 성과표 및 제안">
+                    <div class="gallery-caption" style="display:none;">고객사 맞춤형 온사이트/오프사이트 멤버십 컨설팅 기획</div>
                 </div>
             </div>
 
@@ -806,6 +874,7 @@
                 </div>
                 <div class="snap-image" onclick="openModal(this)">
                     <img src="reward.jpg" alt="경쟁사 전수 조사 및 리워드 체감 지수 분석">
+                    <div class="gallery-caption" style="display:none;">객단가 기반 리워드 최적화 및 휴면 방어 전략</div>
                 </div>
             </div>
         </div>
@@ -818,12 +887,23 @@
                 <span>2026.01</span>
                 <span>|</span>
                 <span class="wave-text">CJ AX WAVE 1기 과제</span>
+                <span>|</span>
+                <a href="https://traxk.lovable.app/" target="_blank"
+                    style="color: var(--accent-blue); text-decoration: underline;">Demo Web</a>
             </div>
+
+            <div class="tech-stack">
+                <span class="tech-tag">B2B SaaS Planning</span>
+                <span class="tech-tag">CVR Optimization</span>
+                <span class="tech-tag">Business Pitching</span>
+            </div>
+
             <p>이커머스 운영 최적화를 타겟으로 한 <strong>데이터 기반 PDP(상품 상세 페이지) 자동 생성 B2B SaaS 솔루션</strong>입니다. 온라인 쇼핑몰 구매 여정 중 이탈 행동 패턴을 분석하고, 머신러닝을 활용해 타겟 고객 맞춤형으로 PDP 콘텐츠를 조합·노출시킴으로써 <strong>사이트 내 최종 결제 전환율(CVR)을 개선</strong>하는 수익화 전략과 IR 피칭을 주도했습니다.</p>
+            
             <div class="gallery-grid">
-                <div class="gallery-item" onclick="openModal(this)"><img src="traxk-slide-1.jpg" alt="시장 문제 진단 및 비전"></div>
-                <div class="gallery-item" onclick="openModal(this)"><img src="traxk-slide-2.jpg" alt="전환율(CVR) 최적화 로직"></div>
-                <div class="gallery-item" onclick="openModal(this)"><img src="traxk-slide-3.jpg" alt="B2B 스케일업 및 과금 BM 전략"></div>
+                <div class="gallery-item" onclick="openModal(this)"><img src="traxk-slide-1.jpg" alt="시장 문제 진단 및 비전"><div class="gallery-caption">시장 문제 진단 및 비전</div></div>
+                <div class="gallery-item" onclick="openModal(this)"><img src="traxk-slide-2.jpg" alt="전환율(CVR) 최적화 로직"><div class="gallery-caption">전환율(CVR) 최적화 로직</div></div>
+                <div class="gallery-item" onclick="openModal(this)"><img src="traxk-slide-3.jpg" alt="B2B 스케일업 및 과금 BM 전략"><div class="gallery-caption">B2B 스케일업 및 과금 BM 전략</div></div>
             </div>
         </div>
     </section>
@@ -836,12 +916,20 @@
                 <span>|</span>
                 <span class="wave-text">CJ AX WAVE 1기 과제</span>
             </div>
+
+            <div class="tech-stack">
+                <span class="tech-tag">Marketing Automation</span>
+                <span class="tech-tag">n8n Workflow</span>
+                <span class="tech-tag">LLM Prompting (Content)</span>
+            </div>
+
             <p>Google Trends RSS 데이터를 실시간으로 감지하고, 대본 기획 - 에셋 생성 - 영상 렌더링 - 글로벌 플랫폼 업로드까지 <strong>실무 개입 없이 100% 무인으로 작동하는 콘텐츠 파이프라인</strong>을 구축하여 콘텐츠 제작 리소스를 대폭 절감했습니다.</p>
+            
             <div class="gallery-grid">
-                <div class="gallery-item" onclick="openModal(this)"><img src="trend-workflow-plan.png" alt="시스템 아키텍처 및 파이프라인 기획"></div>
-                <div class="gallery-item" onclick="openModal(this)"><img src="trend-workflow-generate.png" alt="멀티모달 프롬프트 기반 자산 생성"></div>
-                <div class="gallery-item" onclick="openModal(this)"><img src="trend-workflow-render.png" alt="클라우드 API 렌더링 배포"></div>
-                <div class="gallery-item" onclick="openModal(this)"><img src="trend-workflow-output.jpg" alt="100% 자동 생성 숏폼"></div>
+                <div class="gallery-item" onclick="openModal(this)"><img src="trend-workflow-plan.png" alt="시스템 아키텍처 및 파이프라인 기획"><div class="gallery-caption">Step 1. 시스템 아키텍처 및 파이프라인 기획</div></div>
+                <div class="gallery-item" onclick="openModal(this)"><img src="trend-workflow-generate.png" alt="멀티모달 프롬프트 기반 자산 생성"><div class="gallery-caption">Step 2. 멀티모달 프롬프트 기반 자산 생성</div></div>
+                <div class="gallery-item" onclick="openModal(this)"><img src="trend-workflow-render.png" alt="클라우드 API 렌더링 배포"><div class="gallery-caption">Step 3. 클라우드 API 렌더링 배포</div></div>
+                <div class="gallery-item" onclick="openModal(this)"><img src="trend-workflow-output.jpg" alt="100% 자동 생성 숏폼"><div class="gallery-caption">Output: 100% 자동 생성 숏폼</div></div>
             </div>
         </div>
     </section>
@@ -853,12 +941,125 @@
                 <span>2025.12</span>
                 <span>|</span>
                 <span class="wave-text">CJ AX WAVE 1기 과제</span>
+                <span>|</span>
+                <a href="https://github.com/boysangme-byte/cotureCRM" target="_blank"
+                    style="color: var(--accent-blue); text-decoration: underline;">Github View</a>
             </div>
+
+            <div class="tech-stack">
+                <span class="tech-tag">Marketing Tool Prototyping</span>
+                <span class="tech-tag">RFM Segmentation</span>
+                <span class="tech-tag">Generative AI</span>
+            </div>
+
             <p>Google Sheets를 백엔드로 연동하고, 조건부 템플릿화와 생성형 AI (GPT-4o/DALL-E) API를 결합하여 타겟 그룹에 적합한 <strong>푸시 알림 카피와 배너 이미지를 원클릭으로 기획·생성</strong>하여 마케터의 운영 공수를 단축시키는 자동화 툴 로직을 구현했습니다.</p>
+            
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <div class="feature-icon">📊</div>
+                    <h4 style="margin-bottom: 8px;">Automated Segmentation</h4>
+                    <p>복잡한 SQL 쿼리 없이, 구글 스프레드시트 기반의 RFM 분석 로직을 템플릿화하여 회원 등급을 직관적으로 시각화합니다.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon">🎨</div>
+                    <h4 style="margin-bottom: 8px;">AI Campaign Studio</h4>
+                    <p>도출된 타겟 세그먼트 정보를 바탕으로 반응률(CTR)을 높일 수 있는 카피와 이미지를 AI를 통해 초안 생성합니다.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon">🔍</div>
+                    <h4 style="margin-bottom: 8px;">Insight Chatbot</h4>
+                    <p>비개발 마케터 직군도 자연어로 손쉽게 주간 성과와 핵심 지표 변동 원인을 질문할 수 있는 사내 인사이트 봇을 설계했습니다.</p>
+                </div>
+            </div>
+
             <div class="gallery-grid">
-                <div class="gallery-item" onclick="openModal(this)"><img src="coture-crm-dashboard.jpg" alt="통합 마케팅 대시보드"></div>
-                <div class="gallery-item" onclick="openModal(this)"><img src="coture-crm-campaign.jpg" alt="타겟팅 캠페인 에셋 생성"></div>
-                <div class="gallery-item" onclick="openModal(this)"><img src="coture-crm-segment.jpg" alt="RFM 세그먼트 분석 뷰"></div>
+                <div class="gallery-item" onclick="openModal(this)"><img src="coture-crm-dashboard.jpg" alt="통합 마케팅 대시보드"><div class="gallery-caption">통합 마케팅 대시보드</div></div>
+                <div class="gallery-item" onclick="openModal(this)"><img src="coture-crm-campaign.jpg" alt="타겟팅 캠페인 에셋 생성"><div class="gallery-caption">타겟팅 캠페인 에셋 생성</div></div>
+                <div class="gallery-item" onclick="openModal(this)"><img src="coture-crm-segment.jpg" alt="RFM 세그먼트 분석 뷰"><div class="gallery-caption">RFM 세그먼트 분석 뷰</div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="spotify">
+        <div class="container">
+            <h2>Project: Market Success Factors via Data Mining</h2>
+            <div class="section-meta">
+                <span>2025.11</span>
+                <span>|</span>
+                <span class="wave-text">CJ AX WAVE 1기 과제</span>
+                <span>|</span>
+                <span>Spotify Data Analysis</span>
+            </div>
+
+            <div class="tech-stack">
+                <span class="tech-tag">Data Mining (Orange3)</span>
+                <span class="tech-tag">K-Means Clustering</span>
+                <span class="tech-tag">Factor Analysis</span>
+            </div>
+
+            <p>
+                시장에서 롱런(Hit)하는 프로덕트의 성공 패턴을 파악하기 위해 2023년 Spotify 음원 데이터를 클러스터링 기반으로 분석했습니다.
+                정량적 수치뿐만 아니라, 제품(음원)이 가진 정성적인 <strong>'분위기(Vibe)' 지표를 K-Means 알고리즘으로 군집화</strong>하여 타겟팅 변수로 치환했습니다. 이를
+                계절성 및 플랫폼 노출 타이밍과 교차 분석하여 <strong>새로운 카테고리 기획 및 퍼포먼스 마케팅을 위한 유의미한 상관관계 전략</strong>을 도출해냈습니다.
+            </p>
+
+            <div class="slider-wrapper">
+                <div class="slider-container">
+                    <div class="slider-item" onclick="openModal(this)">
+                        <img src="spotify-slide-1.png" alt="마케팅 데이터 분석 목적 및 개요">
+                    </div>
+                    <div class="slider-item" onclick="openModal(this)">
+                        <img src="spotify-slide-4.png" alt="속성 기반 K-Means 클러스터링 결과">
+                    </div>
+                    <div class="slider-item" onclick="openModal(this)">
+                        <img src="spotify-slide-7.png" alt="마케팅 액션 플랜 및 성공 요인 인사이트">
+                    </div>
+                    <div class="slider-item" onclick="openModal(this)">
+                        <img src="spotify-slide-9.png" alt="참고 문헌 등 백그라운드 데이터">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="coture-bi">
+        <div class="container">
+            <h2>Project: CRM Strategy Dashboard (Power BI)</h2>
+            <div class="section-meta">
+                <span>2025.10</span>
+                <span>|</span>
+                <span class="wave-text">CJ AX WAVE 1기 과제</span>
+            </div>
+
+            <div class="tech-stack">
+                <span class="tech-tag">Power BI</span>
+                <span class="tech-tag">DAX & Data Modeling</span>
+                <span class="tech-tag">Cohort/Retention Analysis</span>
+            </div>
+
+            <p>
+                가상의 화장품 브랜드 '루미에르 코스'의 로우 데이터를 정제 및 분석하여, <strong>기존 핵심 고객층의 리텐션 하락과 구매 주기 이탈 문제</strong>를 시각화한 Power BI
+                대시보드입니다. 문제 인식에 그치지 않고, <strong>월별 코호트 테이블 및 고객 여정 데이터</strong>를 바탕으로 VIP 리텐션 방어 전략과 수익 다각화를 위한 전략적 해외
+                진출(베트남 타겟팅)을 제안함으로써 데이터 기반의 마케팅 방향성을 수립했습니다.
+            </p>
+
+            <div class="slider-wrapper">
+                <div class="slider-container">
+                    <div class="slider-item" onclick="openModal(this)"><img src="coture-bi-problem.jpg"
+                            alt="브랜드 성장 정체 문제 진단"></div>
+                    <div class="slider-item" onclick="openModal(this)"><img src="coture-bi-kpi.jpg"
+                            alt="핵심 비즈니스 지표(KPI) 하락 분석"></div>
+                    <div class="slider-item" onclick="openModal(this)"><img src="coture-bi-rfm.jpg"
+                            alt="RFM 모델 활용 고객 세분화 및 리스크 진단"></div>
+                    <div class="slider-item" onclick="openModal(this)"><img src="coture-bi-cohort.jpg"
+                            alt="월별 코호트 기반 리텐션 추이 분석"></div>
+                    <div class="slider-item" onclick="openModal(this)"><img src="coture-bi-solution1.jpg"
+                            alt="마케팅 제안 1 - 타겟 리텐션 방어 액션"></div>
+                    <div class="slider-item" onclick="openModal(this)"><img src="coture-bi-solution2.jpg"
+                            alt="마케팅 제안 2 - 글로벌 진출 전략"></div>
+                    <div class="slider-item" onclick="openModal(this)"><img src="coture-bi-dashboard.jpg"
+                            alt="루미에르 코스 경영진을 위한 종합 대시보드 뷰"></div>
+                </div>
             </div>
         </div>
     </section>
